@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="dash::mpd::IAdaptationSet" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAIBUQFQAAABJBgAAYEBAQEAAQEAAkAACABAIkAEI=</HashCode>
+      <FileName>include\IAdaptationSet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IBaseUrl" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAAAAABAA=</HashCode>
+      <FileName>include\IBaseUrl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IContentComponent" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAABEABAAAAAABAAACAAAAAAAAAAAgAAAAAAIAAAA=</HashCode>
+      <FileName>include\IContentComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IDescriptor" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\IDescriptor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IMetrics" Collapsed="true">
+    <Position X="27.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>include\IMetrics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IMPD" Collapsed="true">
+    <Position X="27.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAOACAAAAAAABFCAAAAgAAAAgEAACAMBiIAIAA=</HashCode>
+      <FileName>include\IMPD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IMultipleSegmentBase" Collapsed="true">
+    <Position X="33" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAgAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAEAAA=</HashCode>
+      <FileName>include\IMultipleSegmentBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IPeriod" Collapsed="true">
+    <Position X="38.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAQBCAAAAAAAIAAAQEAAAAAAAAAAAIAIEAEI=</HashCode>
+      <FileName>include\IPeriod.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IProgramInformation" Collapsed="true">
+    <Position X="43.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAARAAAAQAAAAAAAAAAAABAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>include\IProgramInformation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IRange" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>include\IRange.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IRepresentation" Collapsed="true">
+    <Position X="18.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAEAAAABJCAAQEAACAAAAAAAAAAIAAEA=</HashCode>
+      <FileName>include\IRepresentation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IRepresentationBase" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQYAQABAQAAICAAAQgACAABAAABAAAAIAAgAAkAAAAA=</HashCode>
+      <FileName>include\IRepresentationBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISegment" Collapsed="true">
+    <Position X="10" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAACAMAAAAQAAAACAAACAAAAEAAAAAAAAA=</HashCode>
+      <FileName>include\ISegment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISegmentBase" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAACAQAAQAAAAAAAAACAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\ISegmentBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISegmentList" Collapsed="true">
+    <Position X="34.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>include\ISegmentList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISegmentTemplate" Collapsed="true">
+    <Position X="36.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgBAAAABAABAEEAQAAAAAAAgAiAAAAIAAAA=</HashCode>
+      <FileName>include\ISegmentTemplate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISegmentTimeline" Collapsed="true">
+    <Position X="41" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\ISegmentTimeline.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISegmentURL" Collapsed="true">
+    <Position X="45.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAAAQAIAAAAABAAAABAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\ISegmentURL.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISubRepresentation" Collapsed="true">
+    <Position X="16.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAQAAAABAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>include\ISubRepresentation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ISubset" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAQAAA=</HashCode>
+      <FileName>include\ISubset.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ITimeline" Collapsed="true">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAAAAAAAAAAAAAAAAIAAgAAAAAAAAAAA=</HashCode>
+      <FileName>include\ITimeline.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IURLType" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAEAAAABAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>include\IURLType.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::IMPDElement" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAKAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\IMPDElement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::AbstractMPDElement" Collapsed="true">
+    <Position X="36.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAIAAAAACAAAAAQQQAAIAAAAAABAAAAAAA=</HashCode>
+      <FileName>source\mpd\AbstractMPDElement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ContentComponent" Collapsed="true">
+    <Position X="24" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEQBECBAAAIAABgIAACJAAYQAAABAgAAAAAAYAAgQ=</HashCode>
+      <FileName>source\mpd\ContentComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Descriptor" Collapsed="true">
+    <Position X="29.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAIEAABgAAQAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>source\mpd\Descriptor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Metrics" Collapsed="true">
+    <Position X="30" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAQABIAAAAAAAAAAAAAAABQAAABAAAAAwAAAAEAAA=</HashCode>
+      <FileName>source\mpd\Metrics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::MultipleSegmentBase" Collapsed="true">
+    <Position X="34.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEQAIgQAAAAAIAgAAAAAAABAoAAAAAAAAIAAAESAA=</HashCode>
+      <FileName>source\mpd\MultipleSegmentBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::ProgramInformation" Collapsed="true">
+    <Position X="41.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEIQAAERAAAAQIAAAAAAAQARABAABAQAAAAAAQAAIA=</HashCode>
+      <FileName>source\mpd\ProgramInformation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Range" Collapsed="true">
+    <Position X="6.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAIgAAgACAAAAAAgAAIAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>source\mpd\Range.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::RepresentationBase" Collapsed="true">
+    <Position X="27.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gRYMQABEQIAKKAUAwoIuACBAYAREIAAEAAiAAmBCAgQ=</HashCode>
+      <FileName>source\mpd\RepresentationBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Segment" Collapsed="true">
+    <Position X="11.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQgAgIAAAACAMAAAESAAAACAABCAkQAEgCAABAAIA=</HashCode>
+      <FileName>source\mpd\Segment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::SegmentBase" Collapsed="true">
+    <Position X="35.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IwAACAQQQAAAAAAEACAaAAQIAABAAAAAIIAAgAAAAAI=</HashCode>
+      <FileName>source\mpd\SegmentBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::SegmentList" Collapsed="true">
+    <Position X="34.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAQAAAAAQAAAAAQAAAAQIAAAALAACAI=</HashCode>
+      <FileName>source\mpd\SegmentList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::AdaptationSet" Collapsed="true">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIx4TUSF0QgIBJBgoAYGZAQMQAwUTk1KACKND8kV04=</HashCode>
+      <FileName>source\mpd\AdaptationSet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::BaseUrl" Collapsed="true">
+    <Position X="21.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAJgAAAAABAABAAAABAAAAAAgIAAIgAAAAAAAABAA=</HashCode>
+      <FileName>Source\mpd\BaseUrl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::MPD" Collapsed="true">
+    <Position X="31.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAQyAgAeAOBAoAAAABNGABADgoEDgsGQAARMJiYGMmQ=</HashCode>
+      <FileName>Source\mpd\MPD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Period" Collapsed="true">
+    <Position X="39.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAEMgAQRCIAAggAAIAIAQEAICAQARIAIIIDIEVkI=</HashCode>
+      <FileName>Source\mpd\Period.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Representation" Collapsed="true">
+    <Position X="18.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEEAIAwAIEAAgARJSBAQEAASAQABBAAIAAoAFlA=</HashCode>
+      <FileName>Source\mpd\Representation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::SegmentTemplate" Collapsed="true">
+    <Position X="37.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAgBAAAgAACFAEEAQBAQBAAAgAqAwBAIBQAA=</HashCode>
+      <FileName>source\mpd\SegmentTemplate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::SegmentTimeline" Collapsed="true">
+    <Position X="38.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAgAAAIAAAAAAAIAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>source\mpd\SegmentTimeline.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::SegmentURL" Collapsed="true">
+    <Position X="41" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAQAYQAIIAJAAAABAAQAACACABAAIAEAAAAAAAA=</HashCode>
+      <FileName>source\mpd\SegmentURL.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::SubRepresentation" Collapsed="true">
+    <Position X="16.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAggABABAAAAUAgABAAEAAAAAAAAAQCAABAE=</HashCode>
+      <FileName>source\mpd\SubRepresentation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Subset" Collapsed="true">
+    <Position X="25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAEAAAQAAA=</HashCode>
+      <FileName>source\mpd\Subset.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::Timeline" Collapsed="true">
+    <Position X="29.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAIgAAACAAAAAgAgAAIAAAIAIAACAAAAAAAAAAA=</HashCode>
+      <FileName>source\mpd\Timeline.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::mpd::URLType" Collapsed="true">
+    <Position X="32.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIEAAAAAAAAAEQAAAAAAABAIAQAAgAAIAAAAA=</HashCode>
+      <FileName>source\mpd\URLType.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::network::IConnection" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\IConnection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::network::IDownloadableChunk" Collapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEABAAAAAAAAAwABAAAQQAAAAAAAAAAAA=</HashCode>
+      <FileName>include\IDownloadableChunk.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::network::IDownloadObserver" Collapsed="true">
+    <Position X="48" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>include\IDownloadObserver.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::network::IChunk" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAACAMAAAAQAAAACAAACCEAAEAAAAAAAAA=</HashCode>
+      <FileName>include\IChunk.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::network::AbstractChunk" Collapsed="true">
+    <Position X="12.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAIgEABAkAGiBMQABBRgCwwCBAAiSUAAEBAAAAAEAo=</HashCode>
+      <FileName>source\network\AbstractChunk.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::network::DownloadStateManager" Collapsed="true">
+    <Position X="51.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIoAAAAAQBAAIAAAAAAAAAAIAAAABMEAAABAAAAAA=</HashCode>
+      <FileName>source\network\DownloadStateManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::IHTTPTransaction" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAwAAACAAUCACAAIAAAAAAEAAAAAAAAQIAAAAAAAE=</HashCode>
+      <FileName>include\IHTTPTransaction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::ITCPConnection" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAQAAABAAAAgAAAFAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\ITCPConnection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::IThroughputMeasurement" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAQAAAAAAAAAAAABAAAAAEAAAAAA=</HashCode>
+      <FileName>include\IThroughputMeasurement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::HTTPTransaction" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABABwAAICAIWSACAAIAAAAKBGAAJQKIQAQIQgIACAIA=</HashCode>
+      <FileName>source\metrics\HTTPTransaction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::IDASHMetrics" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAIAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>include\IDASHMetrics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::TCPConnection" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABIIAAgACANEAAAAAAAAASAABAAAABAAAEAA=</HashCode>
+      <FileName>source\metrics\TCPConnection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::metrics::ThroughputMeasurement" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQEAAABIAAAAQAACAAAAABAAABAAAAAEAAAABA=</HashCode>
+      <FileName>source\metrics\ThroughputMeasurement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::xml::INode" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAABAIAEAAEAAAABAAAAEBAAAAAAAABAE=</HashCode>
+      <FileName>include\INode.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::xml::DOMHelper" Collapsed="true">
+    <Position X="48" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Source\xml\DOMHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::xml::DOMParser" Collapsed="true">
+    <Position X="49.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAQAAAAAgAAEAAAAIAAAAAAACAAAUEEI=</HashCode>
+      <FileName>Source\xml\DOMParser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::xml::Node" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAgIAoAQAAAEABAKgNEIgCgagBANEAUZAABCUAEHBAE=</HashCode>
+      <FileName>Source\xml\Node.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::helpers::BlockStream" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IASIEAAAAAAAAIgABECAAABAAAEAAAIAAAAAFAhCAAQ=</HashCode>
+      <FileName>source\helpers\BlockStream.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::helpers::Path" Collapsed="true">
+    <Position X="49.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAQAAAQACAAAAAAQAA=</HashCode>
+      <FileName>source\helpers\Path.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::helpers::String" Collapsed="true">
+    <Position X="51.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAQAAAAAAAAAAA=</HashCode>
+      <FileName>source\helpers\String.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::helpers::SyncedBlockStream" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IASIEAAAIAAAAAhEAAAEAABAAAECAAIAACAAFABAAAQ=</HashCode>
+      <FileName>source\helpers\SyncedBlockStream.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::helpers::Time" Collapsed="true">
+    <Position X="48" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAICAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>source\helpers\Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::DASHManager" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Source\manager\DASHManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dash::IDASHManager" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>include\IDASHManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="dash::helpers::block_t" Collapsed="true">
+    <Position X="48" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAQAAAAAAA=</HashCode>
+      <FileName>source\helpers\Block.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="condition_variable_t" Collapsed="true">
+    <Position X="49.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAEAAEAEA=</HashCode>
+      <FileName>source\portable\MultiThreading.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="THREAD_HANDLE" Collapsed="true">
+    <Position X="48" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>source\portable\MultiThreading.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="WSADATA" Collapsed="true">
+    <Position X="49.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>source\portable\Networking.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="dash::network::DownloadState" Collapsed="true">
+    <Position X="48" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>include\IDownloadObserver.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="dash::metrics::HTTPTransactionType" Collapsed="true">
+    <Position X="49.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAAABAAAAAAAgAAAAAgAAAAAgAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>include\IHTTPTransaction.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="dash::xml::NodeType" Collapsed="true">
+    <Position X="51.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEACAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAA=</HashCode>
+      <FileName>Source\xml\DOMParser.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

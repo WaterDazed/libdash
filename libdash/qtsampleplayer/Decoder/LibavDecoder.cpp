@@ -98,9 +98,11 @@ AVFormatContext*    LibavDecoder::OpenInput               ()
     int             err                 = 0;
 
     this->iobuffer                      = (unsigned char*) av_malloc(bufferSize);
+
     avFormatContextPtr                  = avformat_alloc_context();
     avFormatContextPtr->pb              = avio_alloc_context(this->iobuffer, bufferSize, 0, receiver, IORead, NULL, NULL);
     avFormatContextPtr->pb->seekable    = 0;
+
 
     err = avformat_open_input(&avFormatContextPtr, "", NULL, NULL);
     if (err < 0)

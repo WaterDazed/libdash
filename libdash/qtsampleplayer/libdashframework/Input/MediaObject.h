@@ -27,6 +27,7 @@ namespace libdash
             {
                 public:
                     MediaObject             (dash::mpd::ISegment *segment, dash::mpd::IRepresentation *rep);
+                    MediaObject             (dash::mpd::ISegment* segment, dash::mpd::IRepresentation* rep, int segmentNumber);
                     virtual ~MediaObject    ();
 
                     bool                        StartDownload       ();
@@ -39,14 +40,16 @@ namespace libdash
 
                     virtual void    OnDownloadStateChanged  (dash::network::DownloadState state);
                     virtual void    OnDownloadRateChanged   (uint64_t bytesDownloaded);
+                    virtual void    OnDownloadComplete(double downloadedBytes, double downloadTime);
                     /*
                      * IDASHMetrics
                      */
                     const std::vector<dash::metrics::ITCPConnection *>&     GetTCPConnectionList    () const;
                     const std::vector<dash::metrics::IHTTPTransaction *>&   GetHTTPTransactionList  () const;
 
-                private:
+
                     dash::mpd::ISegment             *segment;
+                    uint32_t                        segmentNumber;
                     dash::mpd::IRepresentation      *rep;
                     dash::network::DownloadState    state;
 

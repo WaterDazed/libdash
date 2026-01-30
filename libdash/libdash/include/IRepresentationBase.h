@@ -69,7 +69,7 @@ namespace dash
                  *  media type on a grid determined by the \c \@sar attribute. \n\n
                  *  In the absence of \c \@sar width and height are specified as if the value of \c \@sar were \"1:1\".\n
                  *  \b NOTE:    The visual presentation size of the video is equal to the number of horizontal and vertical samples used for presentation 
-                 *  after encoded samples are cropped in response to encoded cropping parameters, “overscan” signaling, or “pan/scan” display parameters, e.g. SEI messages.
+                 *  after encoded samples are cropped in response to encoded cropping parameters, “overscan?signaling, or “pan/scan?display parameters, e.g. SEI messages.
                  *  @return     an unsigned integer
                  */
                 virtual uint32_t                            GetWidth                        () const = 0;

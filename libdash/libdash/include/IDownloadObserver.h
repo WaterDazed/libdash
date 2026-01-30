@@ -45,6 +45,8 @@ namespace dash
                  *  @param      state               the download state
                  */
                 virtual void OnDownloadStateChanged (DownloadState state)       = 0;
+
+                virtual void OnDownloadComplete(double downloadedBytes, double downloadTime) = 0;
         };
     }
 }

@@ -48,7 +48,7 @@ namespace sampleplayer
                 void AttachAudioObserver    (IAudioObserver *observer);
                 void Flush                  ();
 
-            private:
+            
                 libdash::framework::input::IDataReceiver    *receiver;
                 std::vector <StreamConfig>                  streamconfigs;
                 std::vector <IVideoObserver*>               videoObservers;

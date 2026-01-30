@@ -9,7 +9,10 @@
  * and conditions of the applicable license agreement.
  *****************************************************************************/
 
+#include <iostream>
 #include "MediaObject.h"
+#include "../../../libdash/source/mpd/Segment.h"
+
 
 using namespace libdash::framework::input;
 
@@ -17,79 +20,76 @@ using namespace dash::mpd;
 using namespace dash::network;
 using namespace dash::metrics;
 
-MediaObject::MediaObject    (ISegment *segment, IRepresentation *rep) :
-             segment        (segment),
-             rep            (rep)
-{
-    InitializeConditionVariable (&this->stateChanged);
-    InitializeCriticalSection   (&this->stateLock);
-}
-MediaObject::~MediaObject   ()
-{
-    if(this->state == IN_PROGRESS)
-    {
-        this->segment->AbortDownload();
-        this->OnDownloadStateChanged(ABORTED);
-    }
-    this->segment->DetachDownloadObserver(this);
-    this->WaitFinished();
-
-    DeleteConditionVariable (&this->stateChanged);
-    DeleteCriticalSection   (&this->stateLock);
+MediaObject::MediaObject(ISegment* segment, IRepresentation* rep) :
+	segment(segment),
+	rep(rep) {
+	InitializeConditionVariable(&this->stateChanged);
+	InitializeCriticalSection(&this->stateLock);
 }
 
-bool                MediaObject::StartDownload          ()
-{
-    this->segment->AttachDownloadObserver(this);
-    return this->segment->StartDownload();
+MediaObject::MediaObject(ISegment* segment, IRepresentation* rep, int segmentNumber) :
+	segment(segment),
+	rep(rep),
+	segmentNumber(segmentNumber) {
+	InitializeConditionVariable(&this->stateChanged);
+	InitializeCriticalSection(&this->stateLock);
 }
-void                MediaObject::AbortDownload          ()
-{
-    this->segment->AbortDownload();
-    this->OnDownloadStateChanged(ABORTED);
-}
-void                MediaObject::WaitFinished           ()
-{
-    EnterCriticalSection(&this->stateLock);
 
-    while(this->state != COMPLETED && this->state != ABORTED)
-        SleepConditionVariableCS(&this->stateChanged, &this->stateLock, INFINITE);
+MediaObject::~MediaObject() {
+	if (this->state == IN_PROGRESS) {
+		this->segment->AbortDownload();
+		this->OnDownloadStateChanged(ABORTED);
+	}
+	this->WaitFinished();
 
-    LeaveCriticalSection(&this->stateLock);
+	DeleteConditionVariable(&this->stateChanged);
+	DeleteCriticalSection(&this->stateLock);
 }
-int                 MediaObject::Read                   (uint8_t *data, size_t len)
-{
-    return this->segment->Read(data, len);
-}
-int                 MediaObject::Peek                   (uint8_t *data, size_t len)
-{
-    return this->segment->Peek(data, len);
-}
-int                 MediaObject::Peek                   (uint8_t *data, size_t len, size_t offset)
-{
-    return this->segment->Peek(data, len, offset);
-}
-IRepresentation*    MediaObject::GetRepresentation      ()
-{
-    return this->rep;
-}
-void                MediaObject::OnDownloadStateChanged (DownloadState state)
-{
-    EnterCriticalSection(&this->stateLock);
 
-    this->state = state;
+bool                MediaObject::StartDownload() {
+	this->segment->AttachDownloadObserver(this);
 
-    WakeAllConditionVariable(&this->stateChanged);
-    LeaveCriticalSection(&this->stateLock);
+	return this->segment->StartDownload();
 }
-void                MediaObject::OnDownloadRateChanged  (uint64_t bytesDownloaded)
-{
+void                MediaObject::AbortDownload() {
+	this->segment->AbortDownload();
+	this->OnDownloadStateChanged(ABORTED);
 }
-const std::vector<ITCPConnection *>&    MediaObject::GetTCPConnectionList   () const
-{
-    return this->segment->GetTCPConnectionList();
+void                MediaObject::WaitFinished() {
+	EnterCriticalSection(&this->stateLock);
+
+	while (this->state != COMPLETED && this->state != ABORTED)
+		SleepConditionVariableCS(&this->stateChanged, &this->stateLock, INFINITE);
+
+	LeaveCriticalSection(&this->stateLock);
 }
-const std::vector<IHTTPTransaction *>&  MediaObject::GetHTTPTransactionList () const
-{
-    return this->segment->GetHTTPTransactionList();
+int                 MediaObject::Read(uint8_t* data, size_t len) {
+	return this->segment->Read(data, len);
+}
+int                 MediaObject::Peek(uint8_t* data, size_t len) {
+	return this->segment->Peek(data, len);
+}
+int                 MediaObject::Peek(uint8_t* data, size_t len, size_t offset) {
+	return this->segment->Peek(data, len, offset);
+}
+IRepresentation* MediaObject::GetRepresentation() {
+	return this->rep;
+}
+void                MediaObject::OnDownloadStateChanged(DownloadState state) {
+	EnterCriticalSection(&this->stateLock);
+
+	this->state = state;
+
+	WakeAllConditionVariable(&this->stateChanged);
+	LeaveCriticalSection(&this->stateLock);
+}
+void                MediaObject::OnDownloadRateChanged(uint64_t bytesDownloaded) {
+}
+void    MediaObject::OnDownloadComplete(double downloadedBytes, double downloadTime) {
+}
+const std::vector<ITCPConnection*>& MediaObject::GetTCPConnectionList() const {
+	return this->segment->GetTCPConnectionList();
+}
+const std::vector<IHTTPTransaction*>& MediaObject::GetHTTPTransactionList() const {
+	return this->segment->GetHTTPTransactionList();
 }

@@ -10,6 +10,7 @@
  *****************************************************************************/
 
 #include "DASHManager.h"
+#include "../../../libdash/source/mpd/Segment.h"
 
 using namespace libdash::framework::input;
 using namespace libdash::framework::buffer;
@@ -41,12 +42,11 @@ DASHManager::~DASHManager       ()
     this->buffer   = NULL;
 }
 
-bool        DASHManager::Start                  ()
-{
+bool        DASHManager::Start(MultimediaManager* manager) {
     if (!this->receiver->Start())
         return false;
 
-    if (!this->CreateAVDecoder())
+    if (!this->CreateAVDecoder(manager))
         return false;
 
     this->isRunning = true;
@@ -160,19 +160,23 @@ void        DASHManager::OnSegmentDownloaded    ()
 void        DASHManager::OnDecodingFinished     ()
 {
     if (this->isRunning)
-        this->CreateAVDecoder();
+        this->CreateAVDecoder(this->mediaObjectDecoder->manager);
 }
-bool        DASHManager::CreateAVDecoder        ()
-{
-    MediaObject *mediaObject            = this->buffer->GetFront();
 
+bool        DASHManager::CreateAVDecoder(MultimediaManager* manager) {
+    MediaObject* mediaObject = this->buffer->GetFront(this);
+    
     // initSegForMediaObject may be NULL => BaseUrls
     if (!mediaObject)
         return false;
 
-    MediaObject *initSegForMediaObject  = this->receiver->FindInitSegment(mediaObject->GetRepresentation());
+    MediaObject* initSegForMediaObject = this->receiver->FindInitSegment(mediaObject->GetRepresentation());
 
-    this->mediaObjectDecoder = new MediaObjectDecoder(initSegForMediaObject, mediaObject, this);
+
+    if (manager)
+        this->mediaObjectDecoder = new MediaObjectDecoder(initSegForMediaObject, mediaObject, this, manager);
+    else 
+        this->mediaObjectDecoder = new MediaObjectDecoder(initSegForMediaObject, mediaObject, this);
     return this->mediaObjectDecoder->Start();
 }
 std::string DASHManager::StatusInformation      ()

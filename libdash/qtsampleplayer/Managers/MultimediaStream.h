@@ -33,10 +33,10 @@ namespace sampleplayer
                 MultimediaStream            (StreamType type, dash::mpd::IMPD *mpd, uint32_t segmentBufferSize, uint32_t frameBufferSize, uint32_t sampleBufferSize);
                 virtual ~MultimediaStream   ();
 
-                bool        Start                   ();
+                bool        Start                   (MultimediaManager* manager = nullptr);
                 void        Stop                    ();
                 void        StopDownload            ();
-                bool        StartDownload           ();
+                bool        StartDownload           (MultimediaManager* manager = nullptr);
                 void        Clear                   ();
                 uint32_t    GetPosition             ();
                 void        SetPosition             (uint32_t segmentNumber);

@@ -54,7 +54,6 @@ namespace sampleplayer
                 void OnVideoBufferStateChanged  (uint32_t fillstateInPercent);
                 void OnAudioBufferStateChanged  (uint32_t fillstateInPercent);
 
-            private:
                 dash::IDASHManager                                          *manager;
                 dash::mpd::IMPD                                             *mpd;
                 renderer::QTGLRenderer                                      *videoElement;
@@ -74,6 +73,7 @@ namespace sampleplayer
                 uint64_t                                                    segmentsDownloaded;
                 CRITICAL_SECTION                                            monitorMutex;
                 double                                                      frameRate;
+                double                                                      speed;
 
                 THREAD_HANDLE                                               videoRendererHandle;
                 THREAD_HANDLE                                               audioRendererHandle;

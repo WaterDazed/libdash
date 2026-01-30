@@ -17,6 +17,16 @@
 #include "IMediaObjectBufferObserver.h"
 #include <deque>
 
+namespace libdash {
+    namespace framework {
+        namespace input {
+            class DASHReceiver;
+            class DASHManager;
+        }
+    }
+}
+
+
 namespace libdash
 {
     namespace framework
@@ -31,17 +41,20 @@ namespace libdash
 
                     bool                        PushBack        (input::MediaObject *media);
                     input::MediaObject*         Front           ();
-                    input::MediaObject*         GetFront        ();
+                    input::MediaObject*         FrontWithLock   ();
+                    input::MediaObject*         GetFront        (input::DASHManager *manager = nullptr);
                     void                        PopFront        ();
+                    void                        PopFrontWithLock();
+                    bool                        PushBackWithCheck(input::MediaObject* media, input::DASHReceiver* dashReceiver);
                     void                        ClearTail       ();
                     void                        Clear           ();
                     void                        SetEOS          (bool value);
                     uint32_t                    Length          ();
+                    uint32_t                    LengthWithLock  ();
                     uint32_t                    Capacity        ();
                     void                        AttachObserver  (IMediaObjectBufferObserver *observer);
                     void                        Notify          ();
 
-                private:
                     std::deque<input::MediaObject *>    mediaobjects;
                     std::vector<IMediaObjectBufferObserver *>   observer;
                     bool                                eos;

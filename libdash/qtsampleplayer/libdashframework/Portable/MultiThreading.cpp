@@ -21,14 +21,13 @@ THREAD_HANDLE   CreateThreadPortable    (void *(*start_routine) (void *), void *
         return th;
     #endif
 }
-void            DestroyThreadPortable   (THREAD_HANDLE th)
-{
-    #if !defined _WIN32 && !defined _WIN64
-        if(th)
-            free(th);
-    #else
-        CloseHandle(th);
-    #endif
+void DestroyThreadPortable(THREAD_HANDLE th) {
+#if !defined _WIN32 && !defined _WIN64
+	if (th)
+		free(th);
+#else
+	CloseHandle(th);
+#endif
 }
 
 /****************************************************************************

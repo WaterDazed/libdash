@@ -10,6 +10,9 @@
  *****************************************************************************/
 
 #include "MediaObjectBuffer.h"
+#include "../Input/DASHReceiver.h"
+#include "../Input/DASHManager.h"
+#include "../../../libdash/source/mpd/Segment.h"
 
 using namespace libdash::framework::buffer;
 using namespace libdash::framework::input;
@@ -54,6 +57,34 @@ bool            MediaObjectBuffer::PushBack         (MediaObject *media)
     this->Notify();
     return true;
 }
+
+bool            MediaObjectBuffer::PushBackWithCheck(MediaObject* media, DASHReceiver* dashReceiver) {
+    EnterCriticalSection(&this->monitorMutex);
+
+    while (this->mediaobjects.size() >= this->maxcapacity && !this->eos)
+        SleepConditionVariableCS(&this->empty, &this->monitorMutex, INFINITE);
+   
+    std::string mediaRep = media->rep->GetId();
+    std::string dashReceiverRep = dashReceiver->representation->GetId();
+    //std::cout << mediaRep << "=?=" << dashReceiverRep << mediaRep.compare(dashReceiverRep) << std::endl;
+    if (mediaRep.compare(dashReceiverRep) == 0) {
+        if (this->mediaobjects.size() >= this->maxcapacity) {
+            LeaveCriticalSection(&this->monitorMutex);
+            return false;
+        }
+        this->mediaobjects.push_back(media);
+
+        //Segment* tmp = dynamic_cast<Segment*>(media->segment);
+        //std::cout << "add: " << tmp->AbsoluteURI() << std::endl;
+
+        WakeAllConditionVariable(&this->full);
+        this->Notify();
+    }
+
+    LeaveCriticalSection(&this->monitorMutex);
+    return true;
+}
+
 MediaObject*    MediaObjectBuffer::Front            ()
 {
     EnterCriticalSection(&this->monitorMutex);
@@ -73,7 +104,15 @@ MediaObject*    MediaObjectBuffer::Front            ()
 
     return object;
 }
-MediaObject*    MediaObjectBuffer::GetFront         ()
+MediaObject* MediaObjectBuffer::FrontWithLock() {
+    MediaObject* object = this->mediaobjects.front();
+
+    //Segment* tmp = dynamic_cast<Segment*>(object->segment);
+    //std::cout << "peek: " << tmp->AbsoluteURI() << std::endl;
+
+    return object;
+}
+MediaObject*    MediaObjectBuffer::GetFront         (DASHManager* manager)
 {
     EnterCriticalSection(&this->monitorMutex);
 
@@ -86,10 +125,20 @@ MediaObject*    MediaObjectBuffer::GetFront         ()
         return NULL;
     }
 
+    if (manager)
+        EnterCriticalSection(&manager->receiver->monitorMutex);
+
     MediaObject *object = this->mediaobjects.front();
     this->mediaobjects.pop_front();
+    manager->receiver->latestDecodedsegmentNumber = (int)(object->segmentNumber);
+
+    //Segment* tmp = dynamic_cast<Segment*>(object->segment);
+    //std::cout << "get: " << tmp->AbsoluteURI() << std::endl;
 
     WakeAllConditionVariable(&this->empty);
+
+    if (manager)
+        LeaveCriticalSection(&manager->receiver->monitorMutex);
     LeaveCriticalSection(&this->monitorMutex);
     this->Notify();
 
@@ -105,6 +154,12 @@ uint32_t        MediaObjectBuffer::Length           ()
 
     return ret;
 }
+
+uint32_t        MediaObjectBuffer::LengthWithLock() {
+    uint32_t ret = this->mediaobjects.size();
+    return ret;
+}
+
 void            MediaObjectBuffer::PopFront         ()
 {
     EnterCriticalSection(&this->monitorMutex);
@@ -113,6 +168,19 @@ void            MediaObjectBuffer::PopFront         ()
 
     WakeAllConditionVariable(&this->empty);
     LeaveCriticalSection(&this->monitorMutex);
+    this->Notify();
+}
+void            MediaObjectBuffer::PopFrontWithLock() 
+{
+    MediaObject* object = this->mediaobjects.front();
+    this->mediaobjects.pop_front();
+
+    //Segment* tmp = dynamic_cast<Segment*>(object->segment);
+    //std::cout << "throw: " << tmp->AbsoluteURI() << std::endl;
+
+    delete object;
+
+    WakeAllConditionVariable(&this->empty);
     this->Notify();
 }
 void            MediaObjectBuffer::SetEOS           (bool value)

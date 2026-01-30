@@ -14,14 +14,13 @@
 
 using namespace sampleplayer;
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    QtSamplePlayerGui w;
+int main(int argc, char* argv[]) {
+	QApplication a(argc, argv);
+	QtSamplePlayerGui w;
 
-    DASHPlayer p(w);
+	DASHPlayer p(w);
 
-    w.show();
+	w.show();
 
-    return a.exec();
+	return a.exec();
 }

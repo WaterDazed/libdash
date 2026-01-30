@@ -19,6 +19,13 @@
 #include "../../Decoder/IAudioObserver.h"
 #include "../../Decoder/IVideoObserver.h"
 #include "MediaObject.h"
+namespace sampleplayer {
+    namespace managers {
+        class MultimediaManager;
+    }
+}
+
+using namespace sampleplayer::managers;
 
 namespace libdash
 {
@@ -29,7 +36,7 @@ namespace libdash
             class MediaObjectDecoder : public IDataReceiver, public sampleplayer::decoder::IAudioObserver, public sampleplayer::decoder::IVideoObserver
             {
                 public:
-                    MediaObjectDecoder          (MediaObject *initSeg, MediaObject *mediaSeg, IMediaObjectDecoderObserver *observer); 
+                    MediaObjectDecoder          (MediaObject *initSeg, MediaObject *mediaSeg, IMediaObjectDecoderObserver *observer, MultimediaManager *manager = nullptr);
                     virtual ~MediaObjectDecoder ();
 
                     bool            Start                   ();
@@ -38,7 +45,7 @@ namespace libdash
                     virtual void    OnVideoDataAvailable    (const uint8_t **data, sampleplayer::decoder::videoFrameProperties* props);
                     virtual void    OnAudioDataAvailable    (const uint8_t **data, sampleplayer::decoder::audioFrameProperties* props);
 
-                private:
+                
                     THREAD_HANDLE                       threadHandle;
                     IMediaObjectDecoderObserver         *observer;
                     sampleplayer::decoder::LibavDecoder *decoder;
@@ -47,6 +54,7 @@ namespace libdash
                     bool                                run;
                     bool                                decoderInitialized;
                     size_t                              initSegmentOffset;
+                    MultimediaManager                   *manager;
 
                     static void*    Decode      (void *data);
                     void            Notify      ();

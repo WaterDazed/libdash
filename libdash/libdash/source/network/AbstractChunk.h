@@ -61,11 +61,14 @@ namespace dash
                  * Observer Notification
                  */
                 void NotifyDownloadRateChanged ();
+                void NotifyDownloadComplete(double downloadedBytes, double downloadTime);
                 /*
                  * IDASHMetrics
                  */
                 const std::vector<dash::metrics::ITCPConnection *>&     GetTCPConnectionList    () const;
                 const std::vector<dash::metrics::IHTTPTransaction *>&   GetHTTPTransactionList  () const;
+
+
 
             private:
                 std::vector<IDownloadObserver *>    observers;

@@ -16,6 +16,7 @@
 #include "IMPD.h"
 
 #include "IDASHReceiverObserver.h"
+#include "IDownloadObserver.h"
 #include "../Buffer/MediaObjectBuffer.h"
 #include "../MPD/AdaptationSetStream.h"
 #include "../MPD/IRepresentationStream.h"
@@ -27,7 +28,7 @@ namespace libdash
     {
         namespace input
         {
-            class DASHReceiver
+            class DASHReceiver : public dash::network::IDownloadObserver
             {
                 public:
                     DASHReceiver            (dash::mpd::IMPD *mpd, IDASHReceiverObserver *obs, buffer::MediaObjectBuffer *buffer, uint32_t bufferSize);
@@ -46,16 +47,20 @@ namespace libdash
                     void                        SetRepresentation       (dash::mpd::IPeriod *period,
                                                                          dash::mpd::IAdaptationSet *adaptationSet,
                                                                          dash::mpd::IRepresentation *representation);
+                    void                        SelectRepresentation    ();
 
                     std::string     StatusInformation();
 
-                private:
                     uint32_t        CalculateSegmentOffset  ();
                     void            NotifySegmentDownloaded ();
                     void            DownloadInitSegment     (dash::mpd::IRepresentation* rep);
                     bool            InitSegmentExists       (dash::mpd::IRepresentation* rep);
 
                     static void*    DoBuffering             (void *receiver);
+
+                    virtual void OnDownloadRateChanged(uint64_t bytesDownloaded);
+                    virtual void OnDownloadStateChanged(dash::network::DownloadState state);
+                    virtual void OnDownloadComplete(double downloadedBytes, double downloadTime);
 
                     std::map<dash::mpd::IRepresentation*, MediaObject*> initSegments;
                     buffer::MediaObjectBuffer                           *buffer;
@@ -67,9 +72,14 @@ namespace libdash
                     mpd::AdaptationSetStream                            *adaptationSetStream;
                     mpd::IRepresentationStream                          *representationStream;
                     uint32_t                                            segmentNumber;
+                    int                                                 latestDecodedsegmentNumber;
                     uint32_t                                            positionInMsecs;
                     uint32_t                                            segmentOffset;
                     uint32_t                                            bufferSize;
+                    double                                              shortBandwidth;
+                    double                                              longBandwidth;
+                    double                                              downloadedBytesStore;
+                    double                                              downloadTimeStore;
                     CRITICAL_SECTION                                    monitorMutex;
 
                     THREAD_HANDLE   bufferingThread;

@@ -37,7 +37,7 @@ namespace libdash
                     DASHManager             (uint32_t maxCapacity, IDASHManagerObserver *multimediaStream, dash::mpd::IMPD *mpd);
                     virtual ~DASHManager    ();
 
-                    bool        Start                   ();
+                    bool        Start                   (MultimediaManager* manager = nullptr);
                     void        Stop                    ();
                     uint32_t    GetPosition             ();
                     void        SetPosition             (uint32_t segmentNumber); // to implement
@@ -55,8 +55,7 @@ namespace libdash
 
                     std::string StatusInformation       ();
 
-                private:
-                    bool    CreateAVDecoder ();
+                    bool    CreateAVDecoder (MultimediaManager* manager = nullptr);
 
                     buffer::MediaObjectBuffer   *buffer;
                     MediaObjectDecoder          *mediaObjectDecoder;

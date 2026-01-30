@@ -369,5 +369,6 @@
   <ItemGroup>
     <None Include="authors.txt" />
     <None Include="license.txt" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

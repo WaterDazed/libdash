@@ -52,6 +52,8 @@ bool    AbstractChunk::StartDownload                ()
     curl_easy_setopt(this->curl, CURLOPT_DEBUGDATA, (void *)this);
     curl_easy_setopt(this->curl, CURLOPT_FAILONERROR, true);
 
+    //curl_easy_setopt(this->curl, CURLOPT_TIMEOUT_MS, 3000L);
+
     if(this->HasByteRange())
         curl_easy_setopt(this->curl, CURLOPT_RANGE, this->Range().c_str());
 
@@ -149,12 +151,24 @@ void*   AbstractChunk::DownloadInternalConnection   (void *abstractchunk)
 
     chunk->response = curl_easy_perform(chunk->curl);
 
+    if (chunk->response == CURLE_OK) {
+        double downloadTime = 0;
+        curl_easy_getinfo(chunk->curl, CURLINFO_TOTAL_TIME, &downloadTime);
+
+        double downloadedBytes = 0;
+        curl_easy_getinfo(chunk->curl, CURLINFO_SIZE_DOWNLOAD, &downloadedBytes);
+
+        chunk->NotifyDownloadComplete(downloadedBytes, downloadTime);
+    }
+    else
+        chunk->NotifyDownloadComplete(0.0, 1.0);
+
     curl_easy_cleanup(chunk->curl);
     curl_global_cleanup();
 
     if(chunk->stateManager.State() == REQUEST_ABORT)
         chunk->stateManager.State(ABORTED);
-    else
+    else if (chunk->stateManager.State() != ABORTED)
         chunk->stateManager.State(COMPLETED);
 
     chunk->blockStream.SetEOS(true);
@@ -165,6 +179,10 @@ void    AbstractChunk::NotifyDownloadRateChanged    ()
 {
     for(size_t i = 0; i < this->observers.size(); i++)
         this->observers.at(i)->OnDownloadRateChanged(this->bytesDownloaded);
+}
+void    AbstractChunk::NotifyDownloadComplete(double downloadedBytes, double downloadTime) {
+    for (size_t i = 0; i < this->observers.size(); i++)
+        this->observers.at(i)->OnDownloadComplete(downloadedBytes, downloadTime);
 }
 size_t  AbstractChunk::CurlResponseCallback         (void *contents, size_t size, size_t nmemb, void *userp)
 {
