@@ -31,9 +31,7 @@ DASHReceiver::DASHReceiver(IMPD* mpd, IDASHReceiverObserver* obs, MediaObjectBuf
 	isBuffering(false),
 	latestDecodedsegmentNumber(-1),
 	shortBandwidth(300),
-	longBandwidth(300),
-	downloadedBytesStore(0),
-	downloadTimeStore(0){
+	longBandwidth(300) {
 	this->period = this->mpd->GetPeriods().at(0);
 	this->adaptationSet = this->period->GetAdaptationSets().at(0);
 	this->representation = this->adaptationSet->GetRepresentation().at(0);
@@ -323,19 +321,12 @@ void DASHReceiver::OnDownloadComplete(double downloadedBytes, double downloadTim
 	if (segmentNumber == 1) {
 		shortBandwidth = downloadSpeed;
 		longBandwidth = downloadSpeed;
-		downloadedBytesStore = downloadedBytes;
-		downloadTimeStore = downloadTime;
 		std::cout << downloadSpeed << " (" << shortBandwidth << ' ' << longBandwidth << ')' << std::endl;
 		return;
 	}
-	downloadedBytesStore += downloadedBytes;
-	downloadTimeStore += downloadTime;
 	if (!(segmentNumber % 1))
 		shortBandwidth = downloadSpeed * 0.3 + shortBandwidth * 0.7;
-	if (!(segmentNumber % 3)) {
-		longBandwidth = downloadSpeed * 0.3 + longBandwidth * 0.7;
-		downloadedBytesStore = 0;
-		downloadTimeStore = 0;
-	}
+	if (!(segmentNumber % 3))
+		longBandwidth = downloadSpeed * 0.17 + longBandwidth * 0.83;
 	std::cout << downloadSpeed << " (" << shortBandwidth << ' ' << longBandwidth << ')' << std::endl;
 }

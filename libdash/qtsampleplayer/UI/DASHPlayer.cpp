@@ -154,5 +154,7 @@ void DASHPlayer::SetSettings(int period, int videoAdaptationSet, int videoRepres
 }
 
 void DASHPlayer::OnUserSettingsChanged(const int speed) {
+	EnterCriticalSection(&multimediaManager->monitorMutex);
 	this->multimediaManager->speed = speed;
+	LeaveCriticalSection(&multimediaManager->monitorMutex);
 }

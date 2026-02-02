@@ -78,8 +78,6 @@ namespace libdash
                     uint32_t                                            bufferSize;
                     double                                              shortBandwidth;
                     double                                              longBandwidth;
-                    double                                              downloadedBytesStore;
-                    double                                              downloadTimeStore;
                     CRITICAL_SECTION                                    monitorMutex;
 
                     THREAD_HANDLE   bufferingThread;
