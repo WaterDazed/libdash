@@ -24,6 +24,7 @@ namespace sampleplayer
 {
     class IDASHPlayerGuiObserver;
 
+
     class QtSamplePlayerGui : public QMainWindow
     {
         Q_OBJECT
@@ -48,6 +49,7 @@ namespace sampleplayer
             void on_cb_video_representation_currentIndexChanged (int index);
             void on_cb_audio_adaptationset_currentIndexChanged  (int index);
             void on_cb_audio_representation_currentIndexChanged (int index);
+            void on_cb_speed_currentIndexChanged                (int index);
             void on_button_mpd_clicked                          ();
             void on_button_start_clicked                        ();
             void on_button_stop_clicked                         ();
@@ -73,6 +75,7 @@ namespace sampleplayer
             void UnLockUI                   ();
 
             void SetPeriodComboBox              (dash::mpd::IMPD *mpd, QComboBox *cb);
+            void SetSpeedComboBox              (QComboBox* cb);
             void SetAdaptationSetComboBox       (dash::mpd::IPeriod *period, QComboBox *cb);
             void SetVideoAdaptationSetComboBox  (dash::mpd::IPeriod *period, QComboBox *cb);
             void SetAudioAdaptationSetComboBox  (dash::mpd::IPeriod *period, QComboBox *cb);
@@ -81,6 +84,7 @@ namespace sampleplayer
             void ClearComboBoxes            ();
 
             void NotifySettingsChanged      ();
+            void NotifySpeedChanged         (double speed);
             void NotifyMPDDownloadPressed   (const std::string &url);
             void NotifyStartButtonPressed   ();
             void NotifyStopButtonPressed    ();

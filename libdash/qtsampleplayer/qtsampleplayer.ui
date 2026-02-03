@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>720</height>
+    <height>883</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,67 +34,7 @@
         <widget class="QComboBox" name="cb_mpd">
          <item>
           <property name="text">
-           <string>http://www-itec.aau.at/~cmueller/libdashtest/showcases/big_buck_bunny_480.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://www-itec.aau.at/~cmueller/libdashtest/showcases/redbull_segment_template.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://dash.edgesuite.net/dash264/TestCases/1b/envivio/manifest.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://dash.edgesuite.net/dash264/TestCases/1c/envivio/manifest.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://dash.edgesuite.net/dash264/TestCases/2a/envivio/manifest.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://tvnlive.dashdemo.edgesuite.net/live/manifest.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-full-gdr/mp4-full-gdr-mpd-AV-BS.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-full-gdr/mp4-full-gdr-mpd-AV-NBS.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-live/mp4-live-mpd-AV-BS.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-live/mp4-live-mpd-AV-NBS.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-main-multi/mp4-main-multi-mpd-AV-NBS.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-main-ogop/mp4-main-ogop-mpd-AV-BS.mpd</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>http://ftp-itec.uni-klu.ac.at/dash/conformance/mp4-main-ogop/mp4-main-ogop-mpd-AV-NBS.mpd</string>
+           <string>http://192.168.253.173/dash/test/manifest.mpd</string>
           </property>
          </item>
         </widget>
@@ -102,7 +42,7 @@
        <item>
         <widget class="QLineEdit" name="lineEdit_mpd">
          <property name="text">
-          <string>http://www-itec.aau.at/~cmueller/libdashtest/showcases/big_buck_bunny_480.mpd</string>
+          <string>http://192.168.253.173/dash/test/manifest.mpd</string>
          </property>
         </widget>
        </item>
@@ -204,31 +144,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_period">
-            <property name="text">
-             <string>Period</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QComboBox" name="cb_period"/>
           </item>
           <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Video AdaptationSet</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QComboBox" name="cb_video_adaptationset"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Video Representation</string>
-            </property>
-           </widget>
           </item>
           <item>
            <widget class="QComboBox" name="cb_video_representation">
@@ -241,43 +160,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_audio_adaptationset">
-            <property name="text">
-             <string>Audio AdaptationSet</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QComboBox" name="cb_audio_adaptationset"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_audio_representation">
-            <property name="text">
-             <string>Audio Representation</string>
-            </property>
-           </widget>
           </item>
           <item>
            <widget class="QComboBox" name="cb_audio_representation"/>
           </item>
           <item>
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Video Segment Buffer</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QProgressBar" name="progressBar_V">
             <property name="value">
              <number>24</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Video Frame Buffer</string>
             </property>
            </widget>
           </item>
@@ -289,23 +180,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Audio Segment Buffer</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QProgressBar" name="progressBar_A">
             <property name="value">
              <number>24</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Audio Chunk Buffer</string>
             </property>
            </widget>
           </item>
@@ -315,19 +192,6 @@
              <number>24</number>
             </property>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item>
            <widget class="QTextEdit" name="textBox">
@@ -352,23 +216,27 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="bitmovinLogo">
-            <property name="maximumSize">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>182</width>
-              <height>80</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_speed">
             <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>../bin/bitmovin.png</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
+             <string>Speed</string>
             </property>
            </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cb_speed"/>
           </item>
          </layout>
         </widget>

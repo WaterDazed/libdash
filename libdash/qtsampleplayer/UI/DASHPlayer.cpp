@@ -153,7 +153,7 @@ void DASHPlayer::SetSettings(int period, int videoAdaptationSet, int videoRepres
 	this->currentSettings.audioRepresentation = audioRepresentation;
 }
 
-void DASHPlayer::OnUserSettingsChanged(const int speed) {
+void DASHPlayer::OnSpeedChanged(double speed) {
 	EnterCriticalSection(&multimediaManager->monitorMutex);
 	this->multimediaManager->speed = speed;
 	LeaveCriticalSection(&multimediaManager->monitorMutex);

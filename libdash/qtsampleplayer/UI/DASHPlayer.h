@@ -60,7 +60,7 @@ namespace sampleplayer {
 
 		virtual void OnDownloadMPDPressed(const std::string& url);
 
-		virtual void OnUserSettingsChanged(const int speed);
+		virtual void OnSpeedChanged(double speed);
 
 	private:
 		dash::mpd::IMPD* mpd;

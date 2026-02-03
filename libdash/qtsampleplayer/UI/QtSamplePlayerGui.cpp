@@ -21,11 +21,18 @@ using namespace sampleplayer::renderer;
 using namespace dash::mpd;
 using namespace libdash::framework::mpd;
 
+
+std::vector<double> speedIndex;
+
 QtSamplePlayerGui::QtSamplePlayerGui    (QWidget *parent) : 
                    QMainWindow          (parent),
                    ui                   (new Ui::QtSamplePlayerClass),
                    mpd                  (NULL)
 {
+    speedIndex.push_back(1);
+    speedIndex.push_back(2);
+
+
     this->ui->setupUi(this);
     this->SetVideoSegmentBufferFillState(0);
     this->SetVideoBufferFillState(0);
@@ -33,6 +40,20 @@ QtSamplePlayerGui::QtSamplePlayerGui    (QWidget *parent) :
     this->SetAudioBufferFillState(0);
     this->ui->button_stop->setEnabled(false);
     this->ui->button_start->setEnabled(false);
+
+    this->ui->label_resolution->hide();
+    this->ui->cb_period->hide();
+    this->ui->cb_video_adaptationset->hide();
+    this->ui->cb_video_representation->hide();
+    this->ui->cb_audio_adaptationset->hide();
+    this->ui->cb_audio_representation->hide();
+    this->ui->progressBar_V->hide();
+    this->ui->progressBar_VF->hide();
+    this->ui->progressBar_A->hide();
+    this->ui->progressBar_AC->hide();
+    this->ui->textBox->hide();
+
+
 }
 QtSamplePlayerGui::~QtSamplePlayerGui   ()
 {
@@ -57,6 +78,9 @@ void            QtSamplePlayerGui::SetGuiFields                                 
 {
     this->LockUI();
     this->ClearComboBoxes();
+
+    this->SetSpeedComboBox(this->ui->cb_speed);
+
     this->SetPeriodComboBox(mpd, this->ui->cb_period);
     
     if (mpd->GetPeriods().size() > 0)
@@ -185,6 +209,19 @@ void            QtSamplePlayerGui::SetPeriodComboBox                            
         cb->addItem(QString(ss.str().c_str()));
     }
 }
+void            QtSamplePlayerGui::SetSpeedComboBox(QComboBox* cb) {
+    cb->clear();
+
+    for (size_t i = 0; i < speedIndex.size(); i++) {
+        double speed = speedIndex.at(i);
+
+        std::stringstream ss;
+        ss << "x" << speed;
+
+        cb->addItem(QString(ss.str().c_str()));
+    }
+}
+
 void            QtSamplePlayerGui::LockUI                                           ()
 {
     this->setEnabled(false);
@@ -238,6 +275,14 @@ void            QtSamplePlayerGui::NotifySettingsChanged                        
 
     for(size_t i = 0; i < this->observers.size(); i++)
         this->observers.at(i)->OnSettingsChanged(period, videoAdaptionSet, videoRepresentation, audioAdaptionSet, audioRepresentation);
+
+    this->UnLockUI();
+}
+void            QtSamplePlayerGui::NotifySpeedChanged(double speed) {
+    this->LockUI();
+
+    for (size_t i = 0; i < this->observers.size(); i++)
+        this->observers.at(i)->OnSpeedChanged(speed);
 
     this->UnLockUI();
 }
@@ -336,6 +381,15 @@ void            QtSamplePlayerGui::on_cb_audio_representation_currentIndexChange
 
     this->NotifySettingsChanged();
 }
+
+void            QtSamplePlayerGui::on_cb_speed_currentIndexChanged(int index) {
+    if (index == -1)
+        return; // No Item set
+
+    
+    this->NotifySpeedChanged(speedIndex[index]);
+}
+
 void            QtSamplePlayerGui::on_button_start_clicked                          ()
 {
     this->ui->button_start->setEnabled(false);
