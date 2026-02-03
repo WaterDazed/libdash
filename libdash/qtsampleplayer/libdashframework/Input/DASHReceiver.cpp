@@ -324,9 +324,7 @@ void DASHReceiver::OnDownloadComplete(double downloadedBytes, double downloadTim
 		std::cout << downloadSpeed << " (" << shortBandwidth << ' ' << longBandwidth << ')' << std::endl;
 		return;
 	}
-	if (!(segmentNumber % 1))
-		shortBandwidth = downloadSpeed * 0.3 + shortBandwidth * 0.7;
-	if (!(segmentNumber % 3))
-		longBandwidth = downloadSpeed * 0.17 + longBandwidth * 0.83;
+	shortBandwidth = downloadSpeed * 0.3 + shortBandwidth * 0.7;
+	longBandwidth = downloadSpeed * 0.17 + longBandwidth * 0.83;
 	std::cout << downloadSpeed << " (" << shortBandwidth << ' ' << longBandwidth << ')' << std::endl;
 }
