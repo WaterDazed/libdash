@@ -34,12 +34,31 @@ void    QTGLRenderer::SetImage      (QImage *image)
 }
 void    QTGLRenderer::paintEvent    (QPaintEvent *paintEvent)
 {
+    QPainter painter(this);
+
     EnterCriticalSection(&this->monitorMutex);
 
-    QPainter p;
-    p.begin(this);
-    p.drawImage(this->rect(), this->img);
-    p.end();
+    if (!img.isNull()) {
+        float imageRatio = (float)img.width() / img.height();
+        float widgetRatio = (float)this->width() / this->height();
+
+        int drawW, drawH, x, y;
+
+        if (imageRatio > widgetRatio) {
+            drawW = this->width();
+            drawH = drawW / imageRatio;
+        }
+        else {
+            drawH = this->height();
+            drawW = drawH * imageRatio;
+        }
+
+        x = (this->width() - drawW) / 2;
+        y = (this->height() - drawH) / 2;
+
+        painter.fillRect(this->rect(), Qt::black); 
+        painter.drawImage(QRect(x, y, drawW, drawH), img);
+    }
 
     LeaveCriticalSection(&this->monitorMutex);
 }
