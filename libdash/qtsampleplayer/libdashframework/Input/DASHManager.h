@@ -44,8 +44,6 @@ namespace libdash
                     void        SetPositionInMsec       (uint32_t millisec);
                     void        Clear                   ();
                     void        ClearTail               ();
-                    void        SetRepresentation       (dash::mpd::IPeriod *period, dash::mpd::IAdaptationSet *adaptationSet, dash::mpd::IRepresentation *representation);
-                    void        EnqueueRepresentation   (dash::mpd::IPeriod *period, dash::mpd::IAdaptationSet *adaptationSet, dash::mpd::IRepresentation *representation);
 
                     void        OnSegmentDownloaded     ();
                     void        OnDecodingFinished      ();

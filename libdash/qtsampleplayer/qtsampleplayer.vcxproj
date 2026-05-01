@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Authors.txt" />
+    <None Include="ClassDiagram.cd" />
     <None Include="License.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -83,7 +83,6 @@ namespace sampleplayer
 
             void ClearComboBoxes            ();
 
-            void NotifySettingsChanged      ();
             void NotifySpeedChanged         (double speed);
             void NotifyMPDDownloadPressed   (const std::string &url);
             void NotifyStartButtonPressed   ();

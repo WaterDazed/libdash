@@ -24,7 +24,6 @@ namespace sampleplayer
         public:
             virtual ~IDASHPlayerGuiObserver() {}
 
-            virtual void OnSettingsChanged      (int period, int videoAdaptationSet, int videoRepresentation, int audioAdaptationSet, int audioRepresentation)  = 0;
             virtual void OnStartButtonPressed   (int period, int videoAdaptationSet, int videoRepresentation, int audioAdaptationSet, int audioRepresentation)  = 0;
             virtual void OnStopButtonPressed    ()                                                                                                              = 0;
             virtual void OnDownloadMPDPressed   (const std::string &url)                                                                                        = 0;

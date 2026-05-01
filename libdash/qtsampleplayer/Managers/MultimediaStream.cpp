@@ -98,12 +98,6 @@ AudioChunk* MultimediaStream::GetSamples() {
 void        MultimediaStream::AttachStreamObserver(IStreamObserver* observer) {
 	this->observers.push_back(observer);
 }
-void        MultimediaStream::SetRepresentation(IPeriod* period, IAdaptationSet* adaptationSet, IRepresentation* representation) {
-	this->dashManager->SetRepresentation(period, adaptationSet, representation);
-}
-void        MultimediaStream::EnqueueRepresentation(IPeriod* period, IAdaptationSet* adaptationSet, IRepresentation* representation) {
-	this->dashManager->EnqueueRepresentation(period, adaptationSet, representation);
-}
 void        MultimediaStream::SetAdaptationLogic(libdash::framework::adaptation::IAdaptationLogic* logic) {
 	this->logic = logic;
 }

@@ -83,15 +83,6 @@ void        DASHManager::ClearTail              ()
 {
     this->buffer->ClearTail();
 }
-void        DASHManager::SetRepresentation      (IPeriod *period, IAdaptationSet *adaptationSet, IRepresentation *representation)
-{
-    this->receiver->SetRepresentation(period, adaptationSet, representation);
-    //this->buffer->ClearTail();
-}
-void        DASHManager::EnqueueRepresentation  (IPeriod *period, IAdaptationSet *adaptationSet, IRepresentation *representation)
-{
-    this->receiver->SetRepresentation(period, adaptationSet, representation);
-}
 void        DASHManager::OnVideoFrameDecoded    (const uint8_t **data, videoFrameProperties* props)
 {
     /* TODO: some error handling here */

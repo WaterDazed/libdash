@@ -51,8 +51,6 @@ namespace sampleplayer
                 //void        AddSubtitle             ();
                 //SubtitleObj* GetSubtitle              ();
 
-                void        SetRepresentation       (dash::mpd::IPeriod *period, dash::mpd::IAdaptationSet *adaptationSet, dash::mpd::IRepresentation *representation);
-                void        EnqueueRepresentation   (dash::mpd::IPeriod *period, dash::mpd::IAdaptationSet *adaptationSet, dash::mpd::IRepresentation *representation);
                 void        SetAdaptationLogic      (libdash::framework::adaptation::IAdaptationLogic *logic);
 
                 void        AttachStreamObserver    (IStreamObserver *observer);

@@ -263,21 +263,6 @@ void            QtSamplePlayerGui::SetResolutionLabel                           
 }
 
 /* Notifiers */
-void            QtSamplePlayerGui::NotifySettingsChanged                            ()
-{
-    this->LockUI();
-
-    int period              = this->ui->cb_period->currentIndex();
-    int videoAdaptionSet    = this->ui->cb_video_adaptationset->currentIndex();
-    int videoRepresentation = this->ui->cb_video_representation->currentIndex();
-    int audioAdaptionSet    = this->ui->cb_audio_adaptationset->currentIndex();
-    int audioRepresentation = this->ui->cb_audio_representation->currentIndex();
-
-    for(size_t i = 0; i < this->observers.size(); i++)
-        this->observers.at(i)->OnSettingsChanged(period, videoAdaptionSet, videoRepresentation, audioAdaptionSet, audioRepresentation);
-
-    this->UnLockUI();
-}
 void            QtSamplePlayerGui::NotifySpeedChanged(double speed) {
     this->LockUI();
 
@@ -328,8 +313,6 @@ void            QtSamplePlayerGui::on_cb_period_currentIndexChanged             
     this->SetAudioAdaptationSetComboBox(mpd->GetPeriods().at(index), ui->cb_audio_adaptationset);
     this->SetVideoAdaptationSetComboBox(mpd->GetPeriods().at(index), ui->cb_video_adaptationset);
 
-    this->NotifySettingsChanged();
-
     this->UnLockUI();
 }
 void            QtSamplePlayerGui::on_cb_mpd_currentTextChanged                     (const QString &arg1)
@@ -348,16 +331,12 @@ void            QtSamplePlayerGui::on_cb_video_adaptationset_currentIndexChanged
 
     this->SetRepresentationComoboBox(AdaptationSetHelper::GetVideoAdaptationSets(period).at(index), this->ui->cb_video_representation);
 
-    this->NotifySettingsChanged();
-
     this->UnLockUI();
 }
 void            QtSamplePlayerGui::on_cb_video_representation_currentIndexChanged   (int index)
 {
     if(index == -1)
         return; // No Item set
-
-    this->NotifySettingsChanged();
 }
 void            QtSamplePlayerGui::on_cb_audio_adaptationset_currentIndexChanged    (int index)
 {
@@ -370,16 +349,12 @@ void            QtSamplePlayerGui::on_cb_audio_adaptationset_currentIndexChanged
 
     this->SetRepresentationComoboBox(AdaptationSetHelper::GetAudioAdaptationSets(period).at(index), this->ui->cb_audio_representation);
 
-    this->NotifySettingsChanged();
-
     this->UnLockUI();
 }
 void            QtSamplePlayerGui::on_cb_audio_representation_currentIndexChanged   (int index)
 {
     if(index == -1)
         return; // No Item set
-
-    this->NotifySettingsChanged();
 }
 
 void            QtSamplePlayerGui::on_cb_speed_currentIndexChanged(int index) {

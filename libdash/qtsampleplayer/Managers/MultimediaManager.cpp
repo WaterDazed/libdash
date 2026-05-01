@@ -10,6 +10,7 @@
  *****************************************************************************/
 
 #include "MultimediaManager.h"
+#include "../libdashframework/MPD/AdaptationSetHelper.h"
 
 using namespace libdash::framework::adaptation;
 using namespace libdash::framework::buffer;
@@ -23,13 +24,8 @@ MultimediaManager::MultimediaManager(QTGLRenderer* videoElement, QTAudioRenderer
 	videoElement(videoElement),
 	audioElement(audioElement),
 	mpd(NULL),
-	period(NULL),
-	videoAdaptationSet(NULL),
-	videoRepresentation(NULL),
 	videoLogic(NULL),
 	videoStream(NULL),
-	audioAdaptationSet(NULL),
-	audioRepresentation(NULL),
 	audioLogic(NULL),
 	audioStream(NULL),
 	isStarted(false),
@@ -75,16 +71,16 @@ void    MultimediaManager::Start() {
 
 	this->NotifyStatusObservers(this->GeneralStatusInformation());
 
-	if (this->videoAdaptationSet && this->videoRepresentation) {
-		this->InitVideoRendering(0);
+	this->InitVideoRendering(0);
+	if (this->videoStream) {
 		this->videoStream->Start(this);
 		this->StartVideoRenderingThread();
 
 		this->NotifyStatusObservers(this->videoStream->StreamInformation());
 	}
 
-	if (this->audioAdaptationSet && this->audioRepresentation) {
-		this->InitAudioPlayback(0);
+	this->InitAudioPlayback(0);
+	if (this->audioStream) {
 		this->audioElement->StartPlayback();
 		this->audioStream->Start();
 		this->StartAudioRenderingThread();
@@ -135,45 +131,6 @@ void    MultimediaManager::StopAudio() {
 		this->audioLogic = NULL;
 	}
 }
-bool    MultimediaManager::SetVideoQuality(IPeriod* period, IAdaptationSet* adaptationSet, IRepresentation* representation) {
-	EnterCriticalSection(&this->monitorMutex);
-
-	//auto mapRepresentation = representation->GetRawAttributes();
-	//for (auto it = mapRepresentation.begin(); it != mapRepresentation.end(); ++it) {
-	//	std::cout << it->first << " : " << it->second << std::endl;
-	//}
-	//std::cout << std::endl;
-
-	this->period = period;
-	this->videoAdaptationSet = adaptationSet;
-	this->videoRepresentation = representation;
-
-
-	if (this->videoStream) {
-		this->videoStream->SetRepresentation(this->period, this->videoAdaptationSet, this->videoRepresentation);
-		this->NotifyStatusObservers(this->videoStream->StreamInformation());
-	}
-
-
-	LeaveCriticalSection(&this->monitorMutex);
-	return true;
-}
-bool    MultimediaManager::SetAudioQuality(IPeriod* period, IAdaptationSet* adaptationSet, IRepresentation* representation) {
-	EnterCriticalSection(&this->monitorMutex);
-
-	this->period = period;
-	this->audioAdaptationSet = adaptationSet;
-	this->audioRepresentation = representation;
-
-	if (this->audioStream) {
-		this->audioStream->SetRepresentation(this->period, this->audioAdaptationSet, this->audioRepresentation);
-
-		this->NotifyStatusObservers(this->audioStream->StreamInformation());
-	}
-
-	LeaveCriticalSection(&this->monitorMutex);
-	return true;
-}
 bool    MultimediaManager::SetVideoAdaptationLogic(libdash::framework::adaptation::LogicType type) {
 	//Currently unused, always using ManualAdaptation.
 	return true;
@@ -213,19 +170,35 @@ void    MultimediaManager::NotifyResolutionChange(int width, int height) {
 		this->managerObservers.at(i)->OnResolutionChanged(text.str());
 }
 void    MultimediaManager::InitVideoRendering(uint32_t offset) {
-	this->videoLogic = AdaptationLogicFactory::Create(libdash::framework::adaptation::Manual, this->mpd, this->period, this->videoAdaptationSet);
+	if (this->videoStream || this->mpd == NULL || this->mpd->GetPeriods().empty())
+		return;
+
+	IPeriod* period = this->mpd->GetPeriods().at(0);
+	std::vector<IAdaptationSet*> videoAdaptationSets = libdash::framework::mpd::AdaptationSetHelper::GetVideoAdaptationSets(period);
+
+	if (videoAdaptationSets.empty())
+		return;
+
+	this->videoLogic = AdaptationLogicFactory::Create(libdash::framework::adaptation::Manual, this->mpd, period, videoAdaptationSets.at(0));
 
 	this->videoStream = new MultimediaStream(sampleplayer::managers::VIDEO, this->mpd, SEGMENTBUFFER_SIZE, 2, 0);
 	this->videoStream->AttachStreamObserver(this);
-	this->videoStream->SetRepresentation(this->period, this->videoAdaptationSet, this->videoRepresentation);
 	this->videoStream->SetPosition(offset);
 }
 void    MultimediaManager::InitAudioPlayback(uint32_t offset) {
-	this->audioLogic = AdaptationLogicFactory::Create(libdash::framework::adaptation::Manual, this->mpd, this->period, this->audioAdaptationSet);
+	if (this->audioStream || this->mpd == NULL || this->mpd->GetPeriods().empty())
+		return;
+
+	IPeriod* period = this->mpd->GetPeriods().at(0);
+	std::vector<IAdaptationSet*> audioAdaptationSets = libdash::framework::mpd::AdaptationSetHelper::GetAudioAdaptationSets(period);
+
+	if (audioAdaptationSets.empty())
+		return;
+
+	this->audioLogic = AdaptationLogicFactory::Create(libdash::framework::adaptation::Manual, this->mpd, period, audioAdaptationSets.at(0));
 
 	this->audioStream = new MultimediaStream(sampleplayer::managers::AUDIO, this->mpd, SEGMENTBUFFER_SIZE, 0, 10);
 	this->audioStream->AttachStreamObserver(this);
-	this->audioStream->SetRepresentation(this->period, this->audioAdaptationSet, this->audioRepresentation);
 	this->audioStream->SetPosition(offset);
 }
 void    MultimediaManager::OnSegmentDownloaded() {

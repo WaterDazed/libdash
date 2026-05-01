@@ -38,9 +38,6 @@ namespace sampleplayer
                 void                Stop    ();
                 dash::mpd::IMPD*    GetMPD  ();
 
-                bool SetVideoQuality      (dash::mpd::IPeriod* period, dash::mpd::IAdaptationSet *adaptationSet, dash::mpd::IRepresentation *representation);
-                bool SetAudioQuality      (dash::mpd::IPeriod* period, dash::mpd::IAdaptationSet *adaptationSet, dash::mpd::IRepresentation *representation);
-
                 bool SetVideoAdaptationLogic    (libdash::framework::adaptation::LogicType type);
                 bool SetAudioAdaptationLogic    (libdash::framework::adaptation::LogicType type);
 
@@ -58,13 +55,8 @@ namespace sampleplayer
                 dash::mpd::IMPD                                             *mpd;
                 renderer::QTGLRenderer                                      *videoElement;
                 renderer::QTAudioRenderer                                   *audioElement;
-                dash::mpd::IPeriod                                          *period;
-                dash::mpd::IAdaptationSet                                   *videoAdaptationSet;
-                dash::mpd::IRepresentation                                  *videoRepresentation;
                 libdash::framework::adaptation::IAdaptationLogic            *videoLogic;
                 MultimediaStream                                            *videoStream;
-                dash::mpd::IAdaptationSet                                   *audioAdaptationSet;
-                dash::mpd::IRepresentation                                  *audioRepresentation;
                 libdash::framework::adaptation::IAdaptationLogic            *audioLogic;
                 MultimediaStream                                            *audioStream;
                 std::vector<IMultimediaManagerObserver *>                   managerObservers;
